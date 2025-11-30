@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SharpFade Barber • Starter Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.15);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --card: #111827;
+      --border: #1f2937;
+      --danger: #ef4444;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
+      --shadow-button: 0 10px 25px rgba(79, 70, 229, 0.35);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #111827 0%, #020617 45%, #000 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      margin: 1rem auto 0;
+      max-width: var(--max-width);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.85),
+        rgba(15, 23, 42, 0.4)
+      );
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.8);
+      position: sticky;
+      top: 0.75rem;
+      z-index: 10;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #e5e7eb, #111827);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      color: #0b1120;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.85);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-text span:first-child {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .brand-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .navbar-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .tag-pill {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #bbf7d0;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      display: none;
+    }
+
+    .btn-small {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;  /* change text color to white */
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: 0.18s ease;
+    }
+
+    .btn-small:hover {
+      border-color: rgba(249, 250, 251, 0.9);
+      transform: translateY(-1px);
+    }
+
+    @media (min-width: 640px) {
+      .tag-pill {
+        display: inline-flex;
+      }
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr);
+      gap: 2.25rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+        align-items: center;
+      }
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+      width: fit-content;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.75);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.9rem);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #a855f7, #4f46e5, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 38rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: var(--shadow-button);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(79, 70, 229, 0.6);
+    }
+
+    .btn-ghost {
+      padding: 0.72rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(249, 250, 251, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-note span {
+      color: #a5b4fc;
+      font-weight: 500;
+    }
+
+    /* HERO RIGHT CARD */
+    .hero-right {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .hero-right {
+        display: block;
+      }
+    }
+
+    .profile-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.16), #020617);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .profile-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 20% 0, #e5e7eb, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .profile-info h2 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .profile-info p {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .profile-body {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .profile-body strong {
+      color: #e5e7eb;
+    }
+
+    .schedule-card {
+      border-radius: 18px;
+      padding: 0.9rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.75rem;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .schedule-card h3 {
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+      color: #e5e7eb;
+    }
+
+    .schedule-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #bbf7d0;
+    }
+
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .schedule-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .schedule-row span:first-child {
+      color: var(--muted);
+    }
+
+    .schedule-row span:last-child {
+      color: #e5e7eb;
+    }
+
+    .floating-tag {
+      position: absolute;
+      right: 1rem;
+      top: 1.1rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(8, 47, 73, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      font-size: 0.7rem;
+      color: #e0f2fe;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.18), #020617);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.9);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      color: #a5b4fc;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.9rem;
+    }
+
+    @media (min-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .service-card {
+      padding: 0.9rem;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .service-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      align-items: baseline;
+    }
+
+    .service-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .service-price {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #a5b4fc;
+    }
+
+    .service-time {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* LOCATION & CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr);
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 900px) {
+      .contact-layout {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      }
+    }
+
+    .location-card,
+    .contact-card {
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 0.8rem;
+    }
+
+    .location-line {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .location-line span:first-child {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .map-placeholder {
+      margin-top: 0.6rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.45);
+      padding: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
+    }
+
+    .map-placeholder strong {
+      color: #e5e7eb;
+    }
+
+    form {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    input,
+    textarea {
+      border-radius: 11px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      padding: 0.6rem 0.7rem;
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
+      font-size: 0.8rem;
+      outline: none;
+      transition: 0.16s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(129, 140, 248, 0.9);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.7);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-hint {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 1.5rem 1.25rem 2.2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer span {
+      opacity: 0.8;
+    }
+
+    .footer a {
+      color: #a5b4fc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="navbar-left">
+        <div class="logo-circle">SF</div>
+        <div class="brand-text">
+          <span>SharpFade Barber</span>
+          <span>Modern cuts • Classic care</span>
+        </div>
+      </div>
+      <div class="navbar-cta">
+        <span class="tag-pill">Starter one-page website</span>
+        <button class="btn-small">Book an appointment</button>
+      </div>
+    </header>
+
+    <main class="wrapper">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <div class="hero-tag-dot"></div>
+            Now accepting new clients
+          </div>
+          <h1 class="hero-title">
+            Clean fades, sharp lines, <span>your signature look.</span>
+          </h1>
+          <p class="hero-subtitle">
+            SharpFade is your neighborhood barber studio, combining classic techniques with modern style.
+            Book your cut in minutes and walk out feeling fresh, confident, and camera-ready.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge">
+              <div class="badge-dot"></div>
+              Walk-ins welcome
+            </div>
+            <div class="badge">
+              <div class="badge-dot"></div>
+              Student-friendly pricing
+            </div>
+            <div class="badge">
+              <div class="badge-dot"></div>
+              5-star local reviews
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary">
+              Book your first cut
+              <span>→</span>
+            </button>
+            <button class="btn-ghost">
+              View price list
+            </button>
+          </div>
+
+          <p class="hero-note">
+            <span>Starter package idea:</span> this hero section sells the barber, explains the vibe,
+            and pushes visitors to one primary action: book an appointment.
+          </p>
+        </div>
+
+        <!-- PROFILE / BUSINESS CARD -->
+        <div class="hero-right">
+          <article class="profile-card">
+            <div class="floating-tag">Owner • Master Barber</div>
+            <div class="profile-header">
+              <div class="profile-avatar">LB</div>
+              <div class="profile-info">
+                <h2>Louis Brown</h2>
+                <p>10+ years shaping fades, beards & styles.</p>
+              </div>
+            </div>
+            <div class="profile-body">
+              <p>
+                <strong>“Every cut should feel like an upgrade.”</strong><br />
+                From skin fades and tapers to beard trims and line-ups,
+                Louis takes time to understand your style and make it look effortless.
+              </p>
+            </div>
+            <div class="schedule-card">
+              <div>
+                <h3>Studio hours</h3>
+                <div class="schedule-pill">
+                  <span>●</span>
+                  <span>Open this week</span>
+                </div>
+              </div>
+              <div class="schedule-list">
+                <div class="schedule-row">
+                  <span>Tue – Fri</span>
+                  <span>10:00 – 19:00</span>
+                </div>
+                <div class="schedule-row">
+                  <span>Saturday</span>
+                  <span>09:00 – 17:00</span>
+                </div>
+                <div class="schedule-row">
+                  <span>Sunday & Mon</span>
+                  <span>Closed</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SERVICES & PRICING -->
+      <section class="section" id="services">
+        <div class="section-header">
+          <div class="section-eyebrow">Services & pricing</div>
+          <h2 class="section-title">Keep it simple, show the favorites.</h2>
+          <p class="section-subtitle">
+            For a starter package, highlight 3–6 core services with clear prices.
+            Visitors shouldn’t have to guess what you offer or how much it costs.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Classic haircut</h3>
+              <span class="service-price">€25</span>
+            </div>
+            <p class="service-time">30–40 minutes • wash & style included</p>
+            <p>Tailored cuts for everyday wear. Clean, sharp, and easy to maintain.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Skin fade / Taper fade</h3>
+              <span class="service-price">€30</span>
+            </div>
+            <p class="service-time">40–50 minutes</p>
+            <p>Precision fades with smooth transitions. Perfect for a modern, polished look.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Beard trim & line-up</h3>
+              <span class="service-price">€18</span>
+            </div>
+            <p class="service-time">20–30 minutes</p>
+            <p>Sculpted beards, sharp lines, and a clean neckline to frame your face.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Full service combo</h3>
+              <span class="service-price">€40</span>
+            </div>
+            <p class="service-time">60 minutes</p>
+            <p>Haircut + beard trim + hot towel finish. Leave the chair fully refreshed.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Student cut</h3>
+              <span class="service-price">€20</span>
+            </div>
+            <p class="service-time">Mon–Thu • ID required</p>
+            <p>Clean, affordable cuts for students without sacrificing style.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-top">
+              <h3 class="service-name">Kids cut (under 12)</h3>
+              <span class="service-price">€18</span>
+            </div>
+            <p class="service-time">25–30 minutes</p>
+            <p>Friendly, patient cuts for kids — no rush, no stress, just fresh styles.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- LOCATION & CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div class="section-eyebrow">Location & booking</div>
+          <h2 class="section-title">Show where you are and how to reach you.</h2>
+          <p class="section-subtitle">
+            For the starter package: one clear address, a simple contact form,
+            and a line about how to book (call, WhatsApp, online booking, etc.).
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="location-card">
+            <h3 style="font-size:0.9rem;margin-bottom:0.4rem;">Studio location</h3>
+            <div class="location-line">
+              <span>Address</span>
+              <span><strong>SharpFade Barber Studio</strong><br>
+                123 City Street, 2nd Floor<br>
+                2000 Antwerp</span>
+            </div>
+            <div class="location-line">
+              <span>Contact</span>
+              <span>
+                Phone / WhatsApp: <strong>+32 123 45 67 89</strong><br>
+                Instagram: <strong>@sharpfadebarber</strong>
+              </span>
+            </div>
+
+            <div class="map-placeholder">
+              <strong>Map placeholder</strong><br />
+              Embed a Google Maps iframe here so visitors can tap for directions.<br />
+              In your real project, replace this box with the live map.
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3 style="font-size:0.9rem;margin-bottom:0.4rem;">Quick booking request</h3>
+            <p class="contact-hint">
+              This form can send emails or connect to your booking system in the full version.
+              For the starter package, it’s enough to collect name + preferred time.
+            </p>
+
+            <form>
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Your full name" />
+              </div>
+
+              <div class="field">
+                <label for="service">Preferred service</label>
+                <input id="service" type="text" placeholder="e.g. Skin fade, beard trim..." />
+              </div>
+
+              <div class="field">
+                <label for="time">Preferred day & time</label>
+                <input id="time" type="text" placeholder="e.g. Saturday between 10:00–12:00" />
+              </div>
+
+              <div class="field">
+                <label for="message">Notes (optional)</label>
+                <textarea id="message" placeholder="Anything else you’d like us to know?"></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary" style="margin-top:0.4rem;">
+                Send booking request
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2025 SharpFade Barber Studio. All rights reserved.</span>
+      <span>Starter one-page website concept designed by <a href="#top">NovaWeb Studio</a>.</span>
+    </footer>
+  </div>
+</body>
+</html>

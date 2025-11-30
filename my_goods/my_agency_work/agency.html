@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency | Full-Width Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: #333; background-color: #121212; scroll-behavior: smooth; line-height: 1.6; }
+
+        /* Header */
+        header { background-color: #000; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        .logo { height: 60px; }
+        nav ul { display: flex; list-style: none; gap: 1.5rem; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+        nav ul li a:hover { color: #e8a87c; }
+
+        /* Hero Section */
+        .hero { background: url('https://source.unsplash.com/featured/?dark,creative') no-repeat center center/cover; color: #fff; text-align: center; padding: 5rem 2rem; height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero h1 { font-size: 2.5rem; }
+        .hero p { font-size: 1.25rem; margin: 1rem 0 2rem; }
+        .cta-button { background-color: #e8a87c; color: #000; padding: 0.75rem 1.5rem; border-radius: 50px; font-size: 1.1rem; text-transform: uppercase; border: none; cursor: pointer; transition: background-color 0.3s; }
+        .cta-button:hover { background-color: #f1c1a3; }
+
+        /* Services Section */
+        .services { 
+            padding: 4rem 2rem; 
+            text-align: center; 
+            color: #fff; 
+        }
+
+        .services h2 { 
+            font-size: 2.5rem; 
+            color: #e8a87c; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .services-grid { 
+            
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns */
+            gap: 200rem; 
+        }
+
+        .service-box { 
+            background: #1d1d1d; 
+            padding: 3rem; 
+            border-radius: 8px; 
+            transition: transform 0.3s, background 0.3s; 
+            cursor: pointer; 
+        }
+
+        .service-box:hover { 
+            transform: translateY(-5px); 
+            background: white; 
+            color: #000; 
+        }
+
+        .service-box h3 { 
+            color: #e8a87c; 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
+
+        .service-box p { 
+            font-size: 1rem; 
+        }
+
+        /* Portfolio Section */
+        .portfolio { padding: 4rem 2rem; color: #fff; text-align: center; }
+        .portfolio h2 { font-size: 2.5rem; color: #e8a87c; margin-bottom: 1.5rem; }
+        .portfolio-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .portfolio-item { width: calc(33.333% - 1rem); }
+        .portfolio-item img { width: 100%; border-radius: 8px; transition: transform 0.3s; }
+        .portfolio-item img:hover { transform: scale(1.05); }
+
+        /* Testimonials Section */
+        .testimonials { background: #333; padding: 4rem 2rem; text-align: center; color: #e8a87c; }
+        .testimonials h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .testimonial { background: #1d1d1d; padding: 1.5rem; border-radius: 8px; margin: 1rem auto; width: 60%; color: #fff; }
+
+        /* Contact Section */
+        .contact { background: #1d1d1d; padding: 4rem 2rem; text-align: center; color: #fff; }
+        .contact h2 { font-size: 2.5rem; color: #e8a87c; margin-bottom: 1rem; }
+        .contact form input, .contact form button { padding: 1rem; border: none; border-radius: 5px; margin: 0.5rem; width: 100%; max-width: 400px; font-size: 1rem; }
+        .contact form button { background-color: #e8a87c; color: #000; cursor: pointer; transition: background-color 0.3s; }
+        .contact form button:hover { background-color: #f1c1a3; }
+
+        /* Footer */
+        footer { background: #000; color: #fff; text-align: center; padding: 2rem; font-size: 0.9rem; }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: center; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .portfolio-item { width: calc(50% - 1rem); } /* Two items per row */
+            .services h2, .portfolio h2, .testimonials h2, .contact h2 { font-size: 2rem; } /* Adjust section headings */
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.5rem; }
+            .services h2 { font-size: 1.8rem; }
+            .portfolio-item { width: 100%; } /* Full width on smaller screens */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="CA_DIGITAL__1_-removebg-preview.png" alt="Agency Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Innovative Solutions for Every Business</h1>
+        <p>Empowering brands to stand out and succeed with tailored digital experiences.</p>
+        <button class="cta-button">Get Started</button>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-box">
+                <h3>Website Development</h3>
+                <p>Modern, responsive websites to enhance your brand’s digital presence.</p>
+            </div>
+            <div class="service-box">
+                <h3>Social Media Management</h3>
+                <p>Manage and grow your social media presence with tailored strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://source.unsplash.com/random/400x300?portfolio1" alt="Project 1"></div>
+            <div class="portfolio-item"><img src="https://source.unsplash.com/random/400x300?portfolio2" alt="Project 2"></div>
+            <div class="portfolio-item"><img src="https://source.unsplash.com/random/400x300?portfolio3" alt="Project 3"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonial">
+            <p>"They transformed our brand's online presence. Exceptional service and results!"</p>
+        </div>
+        <div class="testimonial">
+            <p>"Highly professional and creative team. Our go-to agency for design and development."</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or want to work with us? Send us a message!</p>
+        <form action="contact.php" method="POST">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Agency Name. All Rights Reserved.</p>
+    </footer>
+    
+</body>
+</html>

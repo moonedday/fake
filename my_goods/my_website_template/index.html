@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaWeb Studio | Modern Websites for Local Businesses</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+  <header class="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-badge">N</div>
+      <span>NovaWeb Studio</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  <button class="nav-cta" onclick="window.location.href='contact.html'">
+    Get a free mockup
+  </button>
+      <!--<div class="nav__logo">NovaWeb <span>Studio</span></div>
+    <nav class="nav__links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>-->
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__content">
+        <h1>Modern websites for local businesses.</h1>
+        <p>
+          NovaWeb Studio helps barbers, cafes, and small brands get a clean,
+          fast, and mobile-friendly website that actually brings in customers.
+        </p>
+        <div class="hero__actions">
+          <a href="services.html" class="btn btn--primary">View packages</a>
+          <a href="contact.html" class="btn btn--ghost">Book a call</a>
+        </div>
+        <p class="hero__note">
+          Starter sites from <strong>€380</strong> — perfect for first-time business owners.
+        </p>
+      </div>
+      <div class="hero__card">
+        <div class="hero__mock">
+          <div class="hero__mock-header">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="hero__mock-body">
+            <p class="hero__mock-title">Barber Studio One</p>
+            <p class="hero__mock-text">
+              Clean one-page site with services, pricing, and Google Maps location.
+            </p>
+            <ul class="hero__mock-list">
+              <li>📱 100% mobile-friendly</li>
+              <li>⚡ Fast loading</li>
+              <li>📍 Easy to find on Google</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="section">
+      <h2 class="section__title">Why work with NovaWeb Studio?</h2>
+      <div class="grid grid--3">
+        <div class="card">
+          <h3>Built for small businesses</h3>
+          <p>
+            Simple sites that show who you are, what you offer, and how customers
+            can contact or visit you.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Fast turnaround</h3>
+          <p>
+            From idea to live website in days, not months. Perfect if you’re just
+            getting started.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Clear pricing</h3>
+          <p>
+            No hidden fees. Pick a package that fits your stage and upgrade when
+            your business grows.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--cta">
+      <div class="section__cta-inner">
+        <h2>Ready for a clean, simple website that works?</h2>
+        <p>
+          Tell us about your business and we’ll suggest the best package for you —
+          no pressure, no jargon.
+        </p>
+        <a href="contact.html" class="btn btn--primary">Talk to NovaWeb Studio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> NovaWeb Studio. All rights reserved.</p>
+  </footer>
+</div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

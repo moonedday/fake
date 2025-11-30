@@ -1,0 +1,866 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaWeb — Simple Websites for Small Businesses</title>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border-soft: rgba(148, 163, 184, 0.3);
+      --radius-xl: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d2a44 0, #020617 55%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0.75rem;
+      z-index: 10;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .nav-logo-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #60a5fa, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      border: 1px solid rgba(191, 219, 254, 0.7);
+      box-shadow: 0 0 18px rgba(59, 130, 246, 0.7);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.4rem;
+      border-radius: 999px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f9fafb;
+      background: rgba(148, 163, 184, 0.12);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(59, 130, 246, 0.9);
+      background: linear-gradient(
+        135deg,
+        rgba(59, 130, 246, 0.18),
+        rgba(37, 99, 235, 0.65)
+      );
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.55);
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(96, 165, 250, 0.75);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+      margin-top: 2.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.85);
+    }
+
+    .hero-title {
+      font-size: clamp(2.15rem, 4vw, 2.9rem);
+      line-height: 1.08;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.97rem;
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-metric span:first-child {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .hero-metric span:last-child {
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.35rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.5);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-ghost {
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.85);
+      color: #e5e7eb;
+      border-color: rgba(209, 213, 219, 0.8);
+    }
+
+    .hero-visual {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 80%);
+      border-radius: 24px;
+      padding: 1.2rem;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual-orbit {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.25), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(248, 113, 113, 0.35), transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(52, 211, 153, 0.3), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-visual-inner {
+      position: relative;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .screen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(75, 85, 99, 0.9);
+    }
+
+    .url-bar {
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.76rem;
+      color: #9ca3af;
+      max-width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-mock {
+      background: radial-gradient(circle at top, #0f172a 0, #020617 75%);
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 1.2rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-mock h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-mock p {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.3);
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      font-size: 0.7rem;
+    }
+
+    .hero-mock-list {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hero-mock-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-mock-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.9);
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.9);
+      flex-shrink: 0;
+    }
+
+    .hero-side-card {
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .hero-side-metric {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-side-metric span:first-child {
+      color: #e5e7eb;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 1.2rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+      font-size: 0.88rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .chip {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.7), rgba(147, 51, 234, 0.7));
+      border-radius: 22px;
+      padding: 1.7rem 1.4rem;
+      border: 1px solid rgba(209, 213, 219, 0.6);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact p {
+      font-size: 0.9rem;
+      max-width: 28rem;
+    }
+
+    .contact-form {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      padding: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-size: 0.85rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .field label {
+      font-size: 0.78rem;
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: #020617;
+      padding: 0.55rem 0.6rem;
+      color: #e5e7eb;
+      font-size: 0.82rem;
+      outline: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(96, 165, 250, 0.85);
+      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.6);
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-submit {
+      margin-top: 0.4rem;
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #022c22;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 14px 35px rgba(22, 163, 74, 0.7);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .contact-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .hero,
+      .contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        margin-top: 1.5rem;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .section-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav {
+        gap: 0.75rem;
+      }
+
+      .nav-links {
+        display: none; /* keep nav simple on mobile */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding-inline: 1rem;
+      }
+
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-metrics {
+        gap: 1rem;
+      }
+
+      .nav {
+        padding-inline: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Nav -->
+    <header class="nav">
+      <div class="nav-logo">
+        <div class="nav-logo-badge">N</div>
+        <span>NovaWeb Studio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">How it works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Get a free mockup
+      </button>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero" id="top">
+        <div>
+          <div class="hero-kicker">
+            <span class="hero-kicker-dot"></span>
+            Launch-ready websites for small businesses
+          </div>
+
+          <h1 class="hero-title">
+            One-page websites that actually
+            <span>bring you clients.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            I build fast, simple one-page sites for local businesses who want more
+            customers, not more complexity. Clear copy, clean design, and a page
+            your visitors understand in 5 seconds.
+          </p>
+
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <span>7–10 days</span>
+              <span>from idea to launch</span>
+            </div>
+            <div class="hero-metric">
+              <span>1 clear page</span>
+              <span>no confusing menus</span>
+            </div>
+            <div class="hero-metric">
+              <span>€380 starting</span>
+              <span>transparent pricing</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+              Tell me about your business →
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+              See how the process works
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero visual / mock website -->
+        <aside class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-orbit"></div>
+          <div class="hero-visual-inner">
+            <div class="screen-header">
+              <div class="dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="url-bar">https://yourbusiness.be</div>
+            </div>
+
+            <div class="hero-mock">
+              <div>
+                <div class="pill">Example one-page layout</div>
+                <h2>Local Bakery in Antwerp</h2>
+                <p>
+                  Fresh bread, clear opening hours, and a simple “Order now”
+                  button — everything your customers need on one page.
+                </p>
+                <ul class="hero-mock-list">
+                  <li>Big headline that says what you do</li>
+                  <li>Short “About us” with a friendly photo</li>
+                  <li>Menu preview with best-selling items</li>
+                  <li>Google Maps location + contact button</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-metric">
+                  <span>Calls per week</span>
+                  <span>+32%</span>
+                </div>
+                <div class="hero-side-metric">
+                  <span>First-time visitors</span>
+                  <span>+19%</span>
+                </div>
+                <div class="hero-side-metric">
+                  <span>Time to launch</span>
+                  <span>8 days</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Services -->
+      <section id="services">
+        <div class="section-label">Services</div>
+        <h2 class="section-title">What’s included in your one-page website</h2>
+
+        <div class="section-grid">
+          <article class="card">
+            <h3>Clear structure</h3>
+            <p>
+              Hero, services, about, social proof, and a strong call-to-action —
+              everything arranged so visitors know exactly what to do next.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Copy suggestions</span>
+              <span class="chip">Mobile-first layout</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Modern, fast design</h3>
+            <p>
+              Clean typography, good spacing, and responsive sections so your
+              site looks sharp on both phones and desktops.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Responsive</span>
+              <span class="chip">Performance focused</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Simple to update</h3>
+            <p>
+              Built in plain HTML/CSS or your preferred builder so text,
+              prices, or images can be updated easily later.
+            </p>
+            <div class="chip-row">
+              <span class="chip">No complex CMS</span>
+              <span class="chip">Clear handoff</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section id="work">
+        <div class="section-label">Process</div>
+        <h2 class="section-title">How we go from idea to live page</h2>
+
+        <div class="section-grid">
+          <article class="card">
+            <h3>1. Short call or chat</h3>
+            <p>
+              You tell me about your business, ideal customer, and what you
+              want people to do on your site (call, book, visit, order, etc.).
+            </p>
+          </article>
+          <article class="card">
+            <h3>2. Wireframe & text</h3>
+            <p>
+              I sketch a simple layout and suggest the main text sections so the
+              page feels natural for your visitors.
+            </p>
+          </article>
+          <article class="card">
+            <h3>3. Design & launch</h3>
+            <p>
+              I build the page, you review, we tweak once, and then I help you
+              connect your domain and go live.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="contact">
+        <div>
+          <h2>Tell me about your project</h2>
+          <p>
+            Share a few details about your business, and I’ll reply with one
+            simple idea for how your one-page website could look — no pressure,
+            no spam.
+          </p>
+        </div>
+
+        <form class="contact-form">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" type="text" placeholder="e.g. Sarah from Sunny Café" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="message">What do you need a site for?</label>
+            <textarea
+              id="message"
+              placeholder="Short description of your business and what you want people to do on the site."
+            ></textarea>
+          </div>
+          <button type="submit" class="contact-submit">
+            Send message
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2025 NovaWeb Studio — One-page websites for local businesses.</span>
+      <span>
+        Made with HTML &amp; CSS. <a href="#top">Back to top</a>
+      </span>
+    </footer>
+  </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | NovaWeb Studio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+  <header class="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-badge">N</div>
+      <span>NovaWeb Studio</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  <button class="nav-cta" onclick="window.location.href='contact.html'">
+    Get a free mockup
+  </button>    
+  </header>
+
+  <main>
+    <section class="section section--intro">
+      <h1>Let’s build your website</h1>
+      <p>
+        Share a few details about your business and the type of site you want.
+        I’ll reply with ideas and a simple plan.
+      </p>
+    </section>
+
+    <section class="section section--contact">
+      <div class="grid grid--2">
+        <div>
+          <h2>Quick contact</h2>
+          <p>You can reach NovaWeb Studio via:</p>
+          <ul class="contact__list">
+            <li>📧 Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+            <li>📱 WhatsApp: <a href="#">+32 4X XX XX XXX</a></li>
+            <li>📍 Based in Belgium — available remotely</li>
+          </ul>
+          <p class="contact__note">
+            Replace these with your real email / number when you launch the site.
+          </p>
+        </div>
+
+        <div>
+          <h2>Project request form</h2>
+          <form class="form">
+            <label class="form__field">
+              <span>Your name</span>
+              <input type="text" name="name" placeholder="John Doe" required />
+            </label>
+
+            <label class="form__field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+
+            <label class="form__field">
+              <span>Business type</span>
+              <input type="text" name="business" placeholder="Barber, café, salon..." />
+            </label>
+
+            <label class="form__field">
+              <span>Which package are you interested in?</span>
+              <select name="package">
+                <option value="">Choose one</option>
+                <option value="starter">Starter Presence (€380+)</option>
+                <option value="growth">Growth Package (€650+)</option>
+                <option value="premium">Premium Custom</option>
+                <option value="not-sure">Not sure yet</option>
+              </select>
+            </label>
+
+            <label class="form__field">
+              <span>Tell me about your project</span>
+              <textarea name="message" rows="4" placeholder="What do you need? Deadline? Any examples you like?"></textarea>
+            </label>
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Send request
+            </button>
+          </form>
+          <p class="contact__note">
+            For now this form doesn’t send anywhere — you can hook it up later
+            with a simple form service or backend.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> NovaWeb Studio. All rights reserved.</p>
+  </footer>
+</div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

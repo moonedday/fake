@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sharp Fade Barbershop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background: #111; color: #f5f5f5; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+
+    header { padding: 20px 0; border-bottom: 1px solid #333; }
+    header .logo { font-weight: bold; font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; }
+    header nav { float: right; }
+    header nav a { margin-left: 15px; font-size: 0.9rem; }
+    header::after { content: ""; display: block; clear: both; }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #eab308;
+      color: #111;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 0 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+    }
+    .hero-text { flex: 1 1 260px; }
+    .hero-text h1 { font-size: 2.3rem; margin-bottom: 10px; }
+    .hero-text p { color: #ccc; max-width: 450px; }
+    .hero-photo {
+      flex: 1 1 260px;
+      min-height: 260px;
+      background: url("barber-profile.jpg") center/cover no-repeat;
+      border-radius: 12px;
+      border: 2px solid #333;
+    }
+
+    /* Section titles */
+    section { padding: 40px 0; border-top: 1px solid #222; }
+    section h2 { font-size: 1.6rem; margin-bottom: 15px; }
+
+    /* Profile */
+    .profile { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: url("barber-profile.jpg") center/cover no-repeat;
+      border: 3px solid #eab308;
+      flex-shrink: 0;
+    }
+    .profile-text { max-width: 500px; color: #ddd; }
+
+    /* Services */
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    .service-item {
+      padding: 15px;
+      border-radius: 8px;
+      background: #1a1a1a;
+      border: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .service-name { font-weight: bold; }
+    .service-price { color: #eab308; }
+
+    /* Location */
+    .location-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
+      gap: 20px;
+    }
+    .location-card {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      font-size: 0.95rem;
+    }
+    .map-placeholder {
+      background: #1a1a1a;
+      border-radius: 8px;
+      border: 1px solid #222;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* Contact */
+    .contact-info p { margin-bottom: 5px; }
+    .contact-links a { margin-right: 10px; font-size: 0.9rem; }
+
+    footer {
+      padding: 20px 0 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      border-top: 1px solid #222;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 700px) {
+      header nav { float: none; margin-top: 10px; }
+      .hero { padding-top: 30px; }
+      .location-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">Sharp Fade</div>
+      <nav>
+        <a href="#profile">Barber</a>
+        <a href="#services">Services</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Business -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Sharp Fade Barbershop</h1>
+        <p>Clean cuts, fresh fades, and classic shaves in the heart of the city. Walk-ins welcome, bookings preferred.</p>
+        <a href="#contact" class="btn">Book an Appointment</a>
+      </div>
+      <div class="hero-photo">
+        <!-- Replace background image in CSS with real barber/shop photo -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Barber Profile -->
+  <section id="profile">
+    <div class="container profile">
+      <div class="profile-img"></div>
+      <div class="profile-text">
+        <h2>Your Barber</h2>
+        <p>Hey, I’m Mike – a professional barber with 6+ years of experience in fades, beard work, and classic styles.</p>
+        <p>Whether you want a sharp skin fade, a clean corporate cut, or a full beard shape-up, I’ll make sure you leave the chair feeling on point.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2>Services & Prices</h2>
+      <div class="services-list">
+        <div class="service-item">
+          <span class="service-name">Classic Haircut</span>
+          <span class="service-price">€25</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Skin Fade</span>
+          <span class="service-price">€30</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Beard Trim & Shape</span>
+          <span class="service-price">€15</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Haircut + Beard Combo</span>
+          <span class="service-price">€40</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location">
+    <div class="container">
+      <h2>Location & Hours</h2>
+      <div class="location-grid">
+        <div class="location-card">
+          <p><strong>Address</strong></p>
+          <p>Main Street 21<br>2000 Antwerp, Belgium</p>
+          <br>
+          <p><strong>Opening Hours</strong></p>
+          <p>Mon – Fri: 10:00 – 19:00<br>Sat: 09:00 – 17:00<br>Sun: Closed</p>
+          <br>
+          <a class="btn" href="https://maps.google.com" target="_blank">Open in Google Maps</a>
+        </div>
+        <div class="map-placeholder">
+          <!-- In a real project, you’d embed a Google Maps iframe here -->
+          Map preview goes here
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact & Booking</h2>
+      <div class="contact-info">
+        <p><strong>Phone:</strong> +32 4 12 34 56 78</p>
+        <p><strong>Email:</strong> sharpfade@example.com</p>
+      </div>
+      <div class="contact-links" style="margin-top:10px;">
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Sharp Fade Barbershop. All rights reserved.
+  </footer>
+
+</body>
+</html>
