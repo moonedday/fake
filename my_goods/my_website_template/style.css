@@ -204,7 +204,13 @@ main {
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
   gap: 2rem;
   align-items: center;
+  display: flex;
 }
+.hero__content, .hero__card {
+  width: 100%;
+  flex: 1;
+}
+
 
 .hero__content h1 {
   font-size: clamp(2.2rem, 3vw, 2.8rem);
