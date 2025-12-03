@@ -412,11 +412,11 @@
     }
 
     /* SINGLE COLUMN GRID FOR MORE "STRETCHED" FEEL */
-.section-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.4rem;
-}
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.4rem;
+    }
 
 
     .card {
@@ -603,7 +603,7 @@
     .nav a,
     .nav-cta {
       font-size: 1rem;
-      /* 16px → 18px equivalent */
+      /* 7px → 9px equivalent */
     }
 
     /* Hero */
@@ -629,8 +629,8 @@
     .btn-primary,
     .btn-ghost,
     .nav-cta {
-      font-size: 1rem;
-      padding: 0.4rem 1.5rem;
+      font-size: 0.7rem;
+      padding: 0.3rem 1.5rem;
       border-radius: 14px;
       /* Fresha-style pill but less tight */
     }
@@ -813,63 +813,70 @@
     }
 
     .footer-social {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--muted);
-}
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--muted);
+    }
 
-.footer-follow {
-  font-size: 0.9rem;
-}
+    .footer-follow {
+      font-size: 0.9rem;
+    }
 
-.social-icon {
-  color: var(--muted);
-  transition: color 0.15s ease, transform 0.15s ease;
-  display: inline-flex;
-}
+    .social-icon {
+      color: var(--muted);
+      transition: color 0.15s ease, transform 0.15s ease;
+      display: inline-flex;
+    }
 
-.social-icon:hover {
-  color: var(--accent); /* your pink */
-  transform: translateY(-2px);
-}
-/* Default: works nicely on mobile + small screens */
-.nav-logo {
-  display: flex;
-  align-items: center;
-}
+    .social-icon:hover {
+      color: var(--accent);
+      /* your pink */
+      transform: translateY(-2px);
+    }
 
-.nav-logo-img {
-  height: 40px;   /* base size on small screens */
-  width: auto;
-  display: block;
-}
+    /* Default: works nicely on mobile + small screens */
+    .nav-logo {
+      display: flex;
+      align-items: center;  
+    }
 
-.nav {
-  position: sticky;   /* or relative, up to you */
-  top: 0.75rem;
-  padding-left: 1rem; /* normal padding on small screens */
-}
-/* Fancy floating logo only on larger screens */
-@media (min-width: 900px) {
-  .nav {
-    position: relative;
-    padding-left: 30rem;   /* create room for the floating logo */
-  }
+    .nav-logo-img {
+      height: 40px;
+      /* base size on small screens */
+      width: auto;
+      display: block;
+    }
 
-  .nav-logo {
-    position: absolute;
-    left: 1.5rem;
-    top: -28px;           /* how much it overlaps the navbar */
-    z-index: 20;
-  }
+    .nav {
+      position: sticky;
+      /* or relative, up to you */
+      top: 0.75rem;
+      padding-left: 1rem;
+      /* normal padding on small screens */
+    }
 
-  .nav-logo-img {
-    height: 80px;         /* bigger logo on desktop */
-  }
-}
+    /* Fancy floating logo only on larger screens */
+    @media (min-width: 900px) {
+      .nav {
+        position: relative;
+        padding-left: 30rem;
+        /* create room for the floating logo */
+      }
 
+      .nav-logo {
+        position: absolute;
+        left: -7rem;
+        top: -100px;
+        /* how much it overlaps the navbar */
+        z-index: 20;
+      }
 
+      .nav-logo-img {
+        height: 250px;
+        /* bigger logo on desktop */
+      }
+    }
   </style>
 </head>
 
@@ -877,9 +884,9 @@
   <div class="page">
     <!-- Nav -->
     <header class="nav">
-<div class="nav-logo">
-  <img src="logo1-removebg-preview.png" alt="Bloom Nail Studio Logo" class="nav-logo-img" />
-</div>
+      <div class="nav-logo">
+        <img src="logo1-removebg-preview.png" alt="Bloom Nail Studio Logo" class="nav-logo-img" />
+      </div>
 
       <nav class="nav-links">
         <a href="#services">Services</a>
@@ -887,7 +894,9 @@
         <a href="#contact">Book</a>
       </nav>
       <!-- Fresha link in nav -->
-      <a class="nav-cta" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;" target="_blank" rel="noopener">
+      <a class="nav-cta" href=""
+        onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;"
+        target="_blank" rel="noopener">
         Book Now
       </a>
     </header>
@@ -928,7 +937,9 @@
 
           <div class="hero-actions">
             <!-- Main hero CTA to Fresha -->
-            <a class="btn-primary" href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;" target="_blank" rel="noopener">
+            <a class="btn-primary" href=""
+              onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;"
+              target="_blank" rel="noopener">
               Book Now →
             </a>
             <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
@@ -1103,8 +1114,10 @@
               Tap the button below to open the live calendar and see all available times:
             </p>
 
-            <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;" class="contact-submit" target="_blank" rel="noopener">
-               Book Now
+            <a href=""
+              onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mkbhdp/30min?primary_color=f299eb'});return false;"
+              class="contact-submit" target="_blank" rel="noopener">
+              Book Now
             </a>
 
             <p class="contact-note">
@@ -1115,38 +1128,42 @@
       </section>
     </main>
 
-<footer class="footer">
+    <footer class="footer">
 
-  <div class="footer-social">
-    <span class="footer-follow">Follow us on</span>
+      <div class="footer-social">
+        <span class="footer-follow">Follow us on</span>
 
-    <!-- Instagram -->
-    <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon" aria-label="Instagram">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-        <path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 9A3.5 3.5 0 1 1 15.5 13 3.49 3.49 0 0 1 12 16.5zm5.8-10.9a1.3 1.3 0 1 1-1.3-1.3 1.31 1.31 0 0 1 1.3 1.3z"/>
-      </svg>
-    </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/centia_nailed_it/" target="_blank" class="social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path
+              d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3.5A5.5 5.5 0 1 0 17.5 13 5.51 5.51 0 0 0 12 7.5zm0 9A3.5 3.5 0 1 1 15.5 13 3.49 3.49 0 0 1 12 16.5zm5.8-10.9a1.3 1.3 0 1 1-1.3-1.3 1.31 1.31 0 0 1 1.3 1.3z" />
+          </svg>
+        </a>
 
-    <!-- TikTok -->
-    <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon" aria-label="TikTok">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.5 2h3c.2 2.3 1.8 4.1 4 4.6v3.2c-1.7 0-3.3-.6-4.6-1.6v7.6a6.2 6.2 0 1 1-6.2-6.2c.5 0 1 .1 1.5.2v3.3a2.9 2.9 0 1 0 2.9 2.9V2z"/>
-      </svg>
-    </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@centia_nailed_it" target="_blank" class="social-icon" aria-label="TikTok">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.5 2h3c.2 2.3 1.8 4.1 4 4.6v3.2c-1.7 0-3.3-.6-4.6-1.6v7.6a6.2 6.2 0 1 1-6.2-6.2c.5 0 1 .1 1.5.2v3.3a2.9 2.9 0 1 0 2.9 2.9V2z" />
+          </svg>
+        </a>
 
-    <!-- Facebook -->
-    <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon" aria-label="Facebook">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5a4 4 0 0 1 4.3-4.4c.9 0 1.8.1 2.2.1v2.6h-1.3c-1.3 0-1.7.8-1.7 1.6V12H17l-.5 3h-2.5v7A10 10 0 0 0 22 12z"/>
-      </svg>
-    </a>
-  </div>
-  <span>© 2025 Centia Nailed It — Soft, modern nails.</span>
+        <!-- Snapchat -->
+        <a href="https://www.snapchat.com/@akuav18" target="_blank" class="social-icon" aria-label="Snapchat">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2c2.7 0 5 2.3 5 5.1v.3c0 .5.2 1 .5 1.4.6.7 1.7 1.2 2.7 1.5.4.1.8.5.8 1 0 .5-.4.9-.9 1.1-1.2.4-2.5 1.1-2.5 2.1 0 .7.5 1.3 1.7 1.7.4.1.7.5.7.9 0 .5-.4.9-.9 1-1.9.4-2.7 1.3-3.6 2.4-.9 1.1-2 1.7-3.5 1.7s-2.6-.6-3.5-1.7c-.9-1.1-1.7-2-3.6-2.4-.5-.1-.9-.5-.9-1 0-.4.3-.8.7-.9 1.2-.4 1.7-1 1.7-1.7 0-1-1.3-1.7-2.5-2.1-.5-.2-.9-.6-.9-1.1 0-.5.4-.9.8-1 1-.3 2.1-.8 2.7-1.5.3-.4.5-.9.5-1.4v-.3C7 4.3 9.3 2 12 2z" />
+          </svg>
+        </a>
 
-  <span>
-    Made with HTML & CSS. <a href="#top">Back to top</a>
-  </span>
-</footer>
+      </div>
+      <span>© 2025 Centia Nailed It — Soft, modern nails.</span>
+
+      <span>
+        Made with HTML & CSS. <a href="#top">Back to top</a>
+      </span>
+    </footer>
 
   </div>
 </body>
