@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom Nail Studio — Soft, Modern Nails</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #fff5fb;
+      --card: #ffffff;
+      --accent: #ec4899;
+      --accent-soft: rgba(236, 72, 153, 0.12);
+      --text: #1f2933;
+      --muted: #6b7280;
+      --border-soft: rgba(236, 72, 153, 0.25);
+      --radius-xl: 18px;
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe4f4 0, #ffffff 45%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0.75rem;
+      z-index: 10;
+      box-shadow: 0 8px 25px rgba(148, 163, 184, 0.14);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .nav-logo-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #f9a8d4, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #ffffff;
+      border: 1px solid rgba(252, 231, 243, 0.9);
+      box-shadow: 0 0 14px rgba(236, 72, 153, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.4rem;
+      border-radius: 999px;
+      transition: color 0.15s ease, background 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: #111827;
+      background: rgba(236, 72, 153, 0.08);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      background: linear-gradient(
+        189deg,
+        rgba(227, 62, 145, 0.12),
+        rgba(240, 60, 150, 0.9)
+      );
+      box-shadow: 0 0 14px rgba(236, 72, 153, 0.35);
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      white-space: nowrap;
+      color: #ffffff;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+      filter: brightness(1.05);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.85);
+    }
+
+    .hero-title {
+      font-size: clamp(2.15rem, 4vw, 2.9rem);
+      line-height: 1.08;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #ec4899, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 0.97rem;
+      max-width: 32rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-metric span:first-child {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .hero-metric span:last-child {
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn-primary {
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ec4899, #fb7185);
+      color: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 18px 40px rgba(236, 72, 153, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 50px rgba(236, 72, 153, 0.6);
+      filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+      padding: 0.7rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      background: #ffffff;
+      color: var(--muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(248, 250, 252, 0.9);
+      color: #111827;
+      border-color: rgba(156, 163, 175, 0.9);
+    }
+
+    .hero-visual {
+      border-radius: 24px;
+      padding: 1.2rem;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #fff5fb, #ffffff);
+    }
+
+    .hero-visual-inner {
+      position: relative;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(248, 213, 230, 0.9);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .screen-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #fecaca;
+    }
+
+    .url-bar {
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: #f9fafb;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      font-size: 0.76rem;
+      color: #6b7280;
+      max-width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-mock {
+      border-radius: 14px;
+      border: 1px solid rgba(248, 213, 230, 0.9);
+      padding: 1.2rem;
+      background: #fff5fb;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-mock h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-mock p {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(251, 207, 232, 0.9);
+      font-size: 0.7rem;
+      color: #9d174d;
+    }
+
+    .hero-mock-list {
+      margin-top: 0.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hero-mock-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--muted);
+    }
+
+    .hero-mock-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ec4899;
+      flex-shrink: 0;
+    }
+
+    .hero-side-card {
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid rgba(248, 213, 230, 0.9);
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    .hero-side-metric {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+    }
+
+    .hero-side-metric span:first-child {
+      color: #374151;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* SINGLE COLUMN GRID FOR MORE "STRETCHED" FEEL */
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-xl);
+      padding: 1.2rem 1.3rem;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+    }
+    .card-img {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  max-height: 260px;
+}
+
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .chip {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      font-size: 0.7rem;
+      color: #9d174d;
+      background: var(--accent-soft);
+    }
+
+    /* Contact (Fresha) */
+    .contact {
+      background: linear-gradient(
+        135deg,
+        #ffe4f4,
+        #ffffff
+      );
+      border-radius: 22px;
+      padding: 1.7rem 1.4rem;
+      border: 1px solid rgba(248, 213, 230, 0.9);
+      box-shadow: 0 18px 55px rgba(148, 163, 184, 0.25);
+      margin-bottom: 2.5rem;
+      color: #111827;
+    }
+
+    .contact h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact p {
+      font-size: 0.9rem;
+      max-width: 32rem;
+      color: #374151;
+    }
+
+    .contact-strong {
+      font-weight: 600;
+    }
+
+    .contact-inner {
+      margin-top: 1.3rem;
+    }
+
+    .contact-form {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      font-size: 0.85rem;
+      color: #111827;
+    }
+
+    .contact-form p {
+      margin-bottom: 0.9rem;
+      color: #4b5563;
+    }
+
+    .contact-submit {
+      margin-top: 0.2rem;
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ec4899, #fb7185);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 14px 35px rgba(236, 72, 153, 0.45);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .contact-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(236, 72, 153, 0.6);
+      filter: brightness(1.05);
+    }
+
+    .contact-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 0.75rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(229, 231, 235, 0.9);
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .footer a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .nav {
+        gap: 0.75rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding-inline: 1rem;
+      }
+
+      .hero-metrics {
+        gap: 1rem;
+      }
+
+      .nav {
+        padding-inline: 0.85rem;
+      }
+    }
+    /* === FRESHA-STYLE TYPOGRAPHY UPGRADE === */
+
+body {
+  font-size: 18px; /* Global base raised (Fresha uses ~18–20px) */
+  line-height: 1.7;
+}
+
+/* Navigation */
+.nav, .nav a, .nav-cta {
+  font-size: 1rem; /* 16px → 18px equivalent */
+}
+
+/* Hero */
+.hero-title {
+  font-size: clamp(2.8rem, 5vw, 3.6rem); /* WAY larger title */
+}
+
+.hero-subtitle {
+  font-size: 1.15rem; /* Bigger and softer */
+}
+
+.hero-metrics span:first-child {
+  font-size: 1.15rem;
+}
+.hero-metrics span:last-child {
+  font-size: 1rem;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-ghost,
+.nav-cta {
+  font-size: 1rem;
+  padding: 0.4rem 1.5rem;
+  border-radius: 14px; /* Fresha-style pill but less tight */
+}
+
+/* Section titles */
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.section-label {
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+}
+
+/* Cards */
+.card {
+  font-size: 1rem;
+}
+.card h3 {
+  font-size: 1.25rem;
+}
+.card p {
+  font-size: 1rem;
+}
+
+/* Contact block */
+.contact h2 {
+  font-size: 2rem;
+}
+.contact p,
+.contact-note {
+  font-size: 1rem;
+}
+
+.contact-submit {
+  font-size: 1.1rem;
+  padding: 1rem 1.2rem;
+}
+
+/* PHOTO CARDS WITH OVERLAYED DETAILS */
+
+.card {
+  background: none;
+  border-radius: var(--radius-xl);
+  padding: 0;
+  border: none;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+/* Wrapper for image + overlay */
+.card-media {
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+/* The photo itself */
+.card-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.01);
+  transition: transform 0.25s ease;
+}
+
+/* Info overlay on top of the photo */
+.card-overlay {
+  position: absolute;
+  inset: auto 0 0 0; /* stick to bottom */
+  padding: 1rem 1.1rem 1.2rem;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.85),
+    rgba(15, 23, 42, 0.1),
+    transparent 65%
+  );
+  color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Titles & text on the photo */
+.card-overlay h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-overlay p {
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+/* Chips on the overlay */
+.card-overlay .chip-row {
+  margin-top: 0.25rem;
+}
+
+.card-overlay .chip {
+  border-color: rgba(248, 250, 252, 0.7);
+  color: #f9fafb;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+/* Subtle hover zoom */
+.card:hover .card-img {
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Nav -->
+    <header class="nav">
+      <div class="nav-logo">
+        <div class="nav-logo-badge">B</div>
+        <span>Bloom Nail Studio</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#work">Your visit</a>
+        <a href="#contact">Book</a>
+      </nav>
+      <!-- Fresha link in nav -->
+      <a
+        class="nav-cta"
+        href="YOUR_FRESHA_URL_HERE"
+        target="_blank"
+        rel="noopener"
+      >
+        Book on Fresha
+      </a>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="top">
+        <div>
+          <div class="hero-kicker">
+            <span class="hero-kicker-dot"></span>
+            Gentle, modern nails for everyday life
+          </div>
+
+          <h1 class="hero-title">
+            Soft, clean nails that
+            <span>feel like you.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            A cosy nail studio focused on natural-looking manicures, tidy cuticles,
+            and colours that suit your style — without damaging your nails.
+          </p>
+
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <span>60–90 minutes</span>
+              <span>for a full manicure</span>
+            </div>
+            <div class="hero-metric">
+              <span>By appointment</span>
+              <span>no crowded salon vibe</span>
+            </div>
+            <div class="hero-metric">
+              <span>Clean tools</span>
+              <span>strict hygiene every visit</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <!-- Main hero CTA to Fresha -->
+            <a
+              class="btn-primary"
+              href="YOUR_FRESHA_URL_HERE"
+              target="_blank"
+              rel="noopener"
+            >
+              Book on Fresha →
+            </a>
+            <button
+              class="btn-ghost"
+              onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"
+            >
+              See services & prices
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero visual -->
+        <aside class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-inner">
+            <div class="screen-header">
+              <div class="dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="url-bar">https://bloomnailstudio.com</div>
+            </div>
+
+            <div class="hero-mock">
+              <div>
+                <div class="pill">Example appointment</div>
+                <h2>Soft Gel Manicure</h2>
+                <p>
+                  Natural-looking gel with a gentle shape, neat cuticles, and a
+                  colour that fits your everyday outfits.
+                </p>
+                <ul class="hero-mock-list">
+                  <li>Choose your shape, length & finish</li>
+                  <li>Over 100 gel colours & nudes</li>
+                  <li>Strengthening base to protect nails</li>
+                  <li>Easy online booking via Fresha</li>
+                </ul>
+              </div>
+              <div class="hero-side-card">
+                <div class="hero-side-metric">
+                  <span>Average wear</span>
+                  <span>3–4 weeks</span>
+                </div>
+                <div class="hero-side-metric">
+                  <span>New clients</span>
+                  <span>Welcome 🫶</span>
+                </div>
+                <div class="hero-side-metric">
+                  <span>Refills</span>
+                  <span>Shorter & gentler</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Services (single column “stretched”) -->
+      <section id="services">
+        <div class="section-label">Services</div>
+        <h2 class="section-title">What you can book</h2>
+
+        <div class="section-grid">
+<article class="card">
+  <div class="card-media">
+    <img
+      src="manicure.jpg"
+      alt="Neat classic manicure with soft nude polish"
+      class="card-img"
+    />
+    <div class="card-overlay">
+      <h3>Classic manicure</h3>
+      <p>
+        Nail shaping, cuticle care, light scrub and massage,
+        finished with a clean polish in your favourite shade.
+      </p>
+      <div class="chip-row">
+        <span class="chip">Short & natural</span>
+        <span class="chip">Everyday friendly</span>
+      </div>
+    </div>
+  </div>
+</article>
+
+          <article class="card">
+            <img src="soft_gel_baib.png" class="card-img" />
+            <h3>Soft gel / BIAB</h3>
+            <p>
+              Strengthening base to protect your natural nails with a soft gel finish
+              that grows out beautifully and lasts weeks.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Less damage</span>
+              <span class="chip">2–4 weeks wear</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="nailart.png" class="card-img" />
+            <h3>Nail art & details</h3>
+            <p>
+              Minimal lines, French tips, tiny hearts, or a little sparkle —
+              subtle designs that stay elegant and wearable.
+            </p>
+            <div class="chip-row">
+              <span class="chip">French & baby boomer</span>
+              <span class="chip">Simple nail art</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- How it works (also single column) -->
+      <section id="work">
+        <div class="section-label">Your visit</div>
+        <h2 class="section-title">From idea to fresh nails</h2>
+
+        <div class="section-grid">
+          <article class="card">
+            <img src="consultation.jpg" class="card-img" />
+            <h3>1. Tell me what you like</h3>
+            <p>
+              Share your nail inspo, usual length, and if you have any sensitivities
+              or past issues with products.
+            </p>
+          </article>
+          <article class="card">
+            <img src="shpae_color.jpg" class="card-img" />
+            <h3>2. Choose shape & colour</h3>
+            <p>
+              At the appointment we go through shapes, finishes and colours together
+              so you leave with nails that fit your style.
+            </p>
+          </article>
+          <article class="card">
+            <img src="relaxed-appoint.jpg" class="card-img" />
+            <h3>3. Relax while I do the rest</h3>
+            <p>
+              You sit back, listen to music or chat while I focus on clean prep,
+              gentle products and a neat, glossy finish.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact / Booking via Fresha (single column block) -->
+      <section id="contact" class="contact">
+        <h2>Book your appointment</h2>
+        <p>
+          All bookings are managed securely through Fresha.
+          Choose your service, pick a time that suits you, and confirm in a few clicks.
+          <br /><br />
+          <span class="contact-strong">
+            If you can’t find a time that works, you can message in the notes after booking.
+          </span>
+        </p>
+
+        <div class="contact-inner">
+          <div class="contact-form">
+            <p>
+              Tap the button below to open the live calendar and see all available times:
+            </p>
+
+            <a
+              href="YOUR_FRESHA_URL_HERE"
+              class="contact-submit"
+              target="_blank"
+              rel="noopener"
+            >
+              Open Fresha booking
+            </a>
+
+            <p class="contact-note">
+              You’ll be able to choose your service, date and time directly on Fresha.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© 2025 Bloom Nail Studio — Soft, modern nails.</span>
+      <span>
+        Made with HTML &amp; CSS. <a href="#top">Back to top</a>
+      </span>
+    </footer>
+  </div>
+</body>
+</html>
