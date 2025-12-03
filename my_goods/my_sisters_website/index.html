@@ -833,6 +833,42 @@
   color: var(--accent); /* your pink */
   transform: translateY(-2px);
 }
+/* Default: works nicely on mobile + small screens */
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  height: 40px;   /* base size on small screens */
+  width: auto;
+  display: block;
+}
+
+.nav {
+  position: sticky;   /* or relative, up to you */
+  top: 0.75rem;
+  padding-left: 1rem; /* normal padding on small screens */
+}
+/* Fancy floating logo only on larger screens */
+@media (min-width: 900px) {
+  .nav {
+    position: relative;
+    padding-left: 30rem;   /* create room for the floating logo */
+  }
+
+  .nav-logo {
+    position: absolute;
+    left: 1.5rem;
+    top: -28px;           /* how much it overlaps the navbar */
+    z-index: 20;
+  }
+
+  .nav-logo-img {
+    height: 80px;         /* bigger logo on desktop */
+  }
+}
+
 
   </style>
 </head>
@@ -841,10 +877,10 @@
   <div class="page">
     <!-- Nav -->
     <header class="nav">
-      <div class="nav-logo">
-        <div class="nav-logo-badge">C</div>
-        <span>Centia Nailed It</span>
-      </div>
+<div class="nav-logo">
+  <img src="logo1-removebg-preview.png" alt="Bloom Nail Studio Logo" class="nav-logo-img" />
+</div>
+
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#work">Your visit</a>
