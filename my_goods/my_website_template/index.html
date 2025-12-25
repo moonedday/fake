@@ -3,106 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NovaWeb Studio | Modern Websites for Local Businesses</title>
+  <title>NovaWeb | Precision web experiences</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page">
   <header class="nav">
-    <div class="nav-logo">
-      <div class="nav-logo-badge">N</div>
-      <span>NovaWeb Studio</span>
+    <div class="nav__logo">
+      <span class="nav__logo-mark">N</span>
+      <span class="nav__logo-text">NovaWeb</span>
     </div>
-    <nav class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  <button class="nav-cta" onclick="window.location.href='contact.html'">
-    Get a free mockup
-  </button>
-      <!--<div class="nav__logo">NovaWeb <span>Studio</span></div>
     <nav class="nav__links">
       <a href="index.html" class="active">Home</a>
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
-    </nav>-->
+    </nav>
+    <button class="nav__cta" onclick="window.location.href='contact.html'">Talk to us</button>
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <div class="hero__content">
-        <h1>Modern websites for local businesses.</h1>
-        <p>
-          NovaWeb Studio helps barbers, cafes, and small brands get a clean,
-          fast, and mobile-friendly website that actually brings in customers.
+        <p class="hero__eyebrow">Studio-grade web design</p>
+        <h1>Beautiful, fast websites for modern businesses.</h1>
+        <p class="hero__subtitle">
+          Crafted with the calm, confident feel of a premium tech brand. Clean layouts,
+          crisp typography, and instant performance on every device.
         </p>
         <div class="hero__actions">
-          <a href="services.html" class="btn btn--primary">View packages</a>
+          <a href="services.html" class="btn btn--primary">Explore packages</a>
           <a href="contact.html" class="btn btn--ghost">Book a call</a>
         </div>
-        <p class="hero__note">
-          Starter sites from <strong>€380</strong> — perfect for first-time business owners.
-        </p>
-      </div>
-      <div class="hero__card">
-        <div class="hero__mock">
-          <div class="hero__mock-header">
-            <span></span><span></span><span></span>
+        <div class="hero__meta">
+          <div>
+            <span>4.9★</span>
+            <p>Client satisfaction</p>
           </div>
-          <div class="hero__mock-body">
-            <p class="hero__mock-title">Barber Studio One</p>
-            <p class="hero__mock-text">
-              Clean one-page site with services, pricing, and Google Maps location.
-            </p>
-            <ul class="hero__mock-list">
-              <li>📱 100% mobile-friendly</li>
-              <li>⚡ Fast loading</li>
-              <li>📍 Easy to find on Google</li>
-            </ul>
+          <div>
+            <span>7 days</span>
+            <p>Average launch time</p>
+          </div>
+          <div>
+            <span>99%</span>
+            <p>Mobile Lighthouse score</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__card">
+          <p class="hero__card-title">NovaWeb One</p>
+          <p class="hero__card-copy">
+            A refined landing page with product storytelling, pricing, and a conversion-ready
+            contact flow.
+          </p>
+          <div class="hero__card-tags">
+            <span>Ultra-light</span>
+            <span>Responsive</span>
+            <span>SEO-ready</span>
+          </div>
+        </div>
+        <div class="hero__screen">
+          <div class="hero__screen-bar"></div>
+          <div class="hero__screen-body">
+            <p>Minimal. Elegant. Effective.</p>
+            <div class="hero__screen-lines">
+              <span></span><span></span><span></span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HIGHLIGHTS -->
     <section class="section">
-      <h2 class="section__title">Why work with NovaWeb Studio?</h2>
+      <h2 class="section__title">Apple-inspired simplicity. Built for your brand.</h2>
       <div class="grid grid--3">
-        <div class="card">
-          <h3>Built for small businesses</h3>
+        <article class="card">
+          <h3>Clarity in every pixel</h3>
           <p>
-            Simple sites that show who you are, what you offer, and how customers
-            can contact or visit you.
+            Balanced white space, bold typography, and calm color palettes that elevate
+            your message without distractions.
           </p>
+        </article>
+        <article class="card">
+          <h3>Performance first</h3>
+          <p>
+            Lightweight layouts, smart image handling, and SEO foundations for speed
+            that feels instant.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Designed to convert</h3>
+          <p>
+            Intentional CTAs, social proof, and clear structure that guides visitors
+            toward booking and purchasing.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--split">
+      <div class="split">
+        <div class="split__text">
+          <p class="split__eyebrow">Featured work</p>
+          <h2>Showcase your signature offering.</h2>
+          <p>
+            Present your hero product, flagship service, or top-tier package in an
+            immersive layout that feels instantly premium.
+          </p>
+          <a class="btn btn--primary" href="services.html">See pricing</a>
         </div>
-        <div class="card">
-          <h3>Fast turnaround</h3>
-          <p>
-            From idea to live website in days, not months. Perfect if you’re just
-            getting started.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Clear pricing</h3>
-          <p>
-            No hidden fees. Pick a package that fits your stage and upgrade when
-            your business grows.
-          </p>
+        <div class="split__panel">
+          <div class="split__tile">
+            <h4>Studio Launch</h4>
+            <p>Perfect for service brands and boutique shops.</p>
+            <span>From €380</span>
+          </div>
+          <div class="split__tile split__tile--alt">
+            <h4>Commerce Light</h4>
+            <p>For curated product drops and waitlists.</p>
+            <span>From €620</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="section section--cta">
-      <div class="section__cta-inner">
-        <h2>Ready for a clean, simple website that works?</h2>
-        <p>
-          Tell us about your business and we’ll suggest the best package for you —
-          no pressure, no jargon.
-        </p>
-        <a href="contact.html" class="btn btn--primary">Talk to NovaWeb Studio</a>
+      <div class="cta">
+        <div>
+          <h2>Ready for a site that feels like a product launch?</h2>
+          <p>Tell us about your business and we’ll map out the perfect layout.</p>
+        </div>
+        <a href="contact.html" class="btn btn--primary">Start a project</a>
       </div>
     </section>
   </main>
@@ -110,7 +140,7 @@
   <footer class="footer">
     <p>© <span id="year"></span> NovaWeb Studio. All rights reserved.</p>
   </footer>
-</div>
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
